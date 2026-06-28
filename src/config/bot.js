@@ -540,3 +540,21 @@ export function getRandomColor() {
 }
 
 export default botConfig;
+module.exports = {
+    name: "say",
+    description: "Makes the bot say something",
+
+    async execute(message, args) {
+        if (!args.length) {
+            return message.reply("Please provide a message for me to send.");
+        }
+
+        const text = args.join(" ");
+
+        // Optional: Delete the user's command
+        await message.delete().catch(() => {});
+
+        // Send the message
+        message.channel.send(text);
+    },
+};
